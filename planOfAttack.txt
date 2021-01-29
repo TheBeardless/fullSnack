@@ -1,0 +1,36 @@
+Idea: 
+User logs in, writes their snack and gives it a rating out of 10. 
+
+How to Start:
+Check the Course Homework for setting up the backend server. 
+
+Install software
+compass postman 
+
+Set up Server
+npm init 
+npm installations - Express mongodb mongoose node nodemon cors express-session
+
+index.js - set up the require express mongoose cors express-session
+
+PORTS (No Parcel)
+Backend = 3000
+Frontend = 1234
+
+Database
+User model
+Snack model
+
+Routes (one at a time, start with index)
+/index 
+/register
+/login
+/logout
+
+Cookies for user authentication. session info. 
+
+UI
+SnackName
+SnackRating
+Submit
+------------- That's it. Do only this - nothing more until it's done. 
