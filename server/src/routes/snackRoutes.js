@@ -1,4 +1,3 @@
-// // import express
 const express = require("express");
 const SnacksAPI = require("../models/SnackModel");
 
@@ -6,6 +5,10 @@ const SnacksAPI = require("../models/SnackModel");
 const router = express.Router();
 
 /////// GET
+router.get("/", (request, response) => {
+  response.send("Snack route for days");
+});
+
 // return something simple.
 router.get("/_health", (request, response) => {
   response.send("Health route is working");
@@ -18,9 +21,8 @@ router.get("/snack", (request, response) => {
 /////// CREATE / POST
 // add snack object to db collection
 router.post("/new-snack", (request, response) => {
-  // extract request body
+  // extract request body for use
   const requestBody = request.body;
-
   // then add request.body to the db collection.
   SnacksAPI.create(requestBody).then((data) => {
     console.log(data);

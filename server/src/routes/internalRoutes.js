@@ -11,9 +11,5 @@ router.get("/", (request, response) =>
 
 router.get("/_health", (request, response) => response.send("OK"));
 
-router.get("/snack", (request, response) => {
-  console.log("request.body:", request.body);
-});
-
 // // Export the router so it can be used by index.js
 module.exports = router;
