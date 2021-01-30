@@ -1,5 +1,7 @@
 Idea: 
 User logs in, writes their snack and gives it a rating out of 10. 
+Only when that's done: 
+voting system, plus/minus.
 
 How to Start:
 Check the Course Homework for setting up the backend server. 
