@@ -32,8 +32,31 @@ router.post("/new-snack", (request, response) => {
 });
 
 /////// UPDATE
+//
+router.patch("/update/:snackid", (request, response) => {
+  // extract request body for use
+  const requestBody = request.body;
+  const idToUpdate = request.params.snackid;
+  // then add request.body to the db collection.
+  SnacksAPI.findByIdAndUpdate(idToUpdate, requestBody).then((data) => {
+    console.log(data);
+    console.log("Snack Updated!");
+  });
+  response.send("this snack was updated successfully");
+});
 
 ////// DELETE
+// requires an ID
+router.patch("/delete/:snackid", (request, response) => {
+  // extract request body for use
+  const idToDelete = request.params.snackid;
+  // then add request.body to the db collection.
+  SnacksAPI.findByIdAndDelete(idToDelete).then((data) => {
+    console.log(data);
+    console.log("Snack Deleted!");
+  });
+  response.send("this snack was deleted successfully");
+});
 
-// // Export the router so it can be used by index.js
+// Export the router so it can be used by index.js
 module.exports = router;
