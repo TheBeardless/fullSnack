@@ -37,7 +37,8 @@ router.post("/new", (request, response) => {
   SnackModel.create(requestBody).then((data) => {
     console.log(data);
     console.log("Snack Created!");
-    response.send(`snack was added successfully. ID: ${data.id}`);
+    response.send(`snack was added successfully.
+    ${data}`);
   });
 });
 
@@ -48,10 +49,15 @@ router.patch("/update/:id", (request, response) => {
   const requestBody = request.body;
   const idToUpdate = request.params.id;
   // then add request.body to the db collection.
-  SnackModel.findByIdAndUpdate(idToUpdate, requestBody).then((data) => {
+  SnackModel.findByIdAndUpdate(idToUpdate, requestBody, {
+    new: true,
+    upsert: true,
+  }).then((data) => {
     console.log(data);
     console.log("Snack Updated!");
-    response.send(`snack was updated successfully. ID: ${data.id}`);
+    response.send(`snack updated successfully:
+    ${data} 
+    `);
   });
 });
 
@@ -64,7 +70,9 @@ router.delete("/delete/:id", (request, response) => {
   SnackModel.findByIdAndDelete(idToDelete).then((data) => {
     console.log(data);
     console.log("Snack Deleted!");
-    response.send(`snack was deleted successfully. ID: ${data.id}`);
+    response.send(`snack deleted successfully:
+    ${data} 
+    `);
   });
 });
 
