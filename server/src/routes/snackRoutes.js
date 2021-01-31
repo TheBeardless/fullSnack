@@ -26,17 +26,17 @@ router.post("/new-snack", (request, response) => {
   // then add request.body to the db collection.
   SnacksAPI.create(requestBody).then((data) => {
     console.log(data);
-    console.log("That's a heck of a snack!");
+    console.log("Snack Created!");
   });
   response.send("this snack was added successfully");
 });
 
 /////// UPDATE
 //
-router.patch("/update/:snackid", (request, response) => {
+router.patch("/update/:id", (request, response) => {
   // extract request body for use
   const requestBody = request.body;
-  const idToUpdate = request.params.snackid;
+  const idToUpdate = request.params.id;
   // then add request.body to the db collection.
   SnacksAPI.findByIdAndUpdate(idToUpdate, requestBody).then((data) => {
     console.log(data);
@@ -47,9 +47,9 @@ router.patch("/update/:snackid", (request, response) => {
 
 ////// DELETE
 // requires an ID
-router.patch("/delete/:snackid", (request, response) => {
+router.delete("/delete/:id", (request, response) => {
   // extract request body for use
-  const idToDelete = request.params.snackid;
+  const idToDelete = request.params.id;
   // then add request.body to the db collection.
   SnacksAPI.findByIdAndDelete(idToDelete).then((data) => {
     console.log(data);

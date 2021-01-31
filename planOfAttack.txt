@@ -36,3 +36,6 @@ SnackName
 SnackRating
 Submit
 ------------- That's it. Do only this - nothing more until it's done. 
+
+voting system:
+in DB: addition key number of votes (start at 0)
