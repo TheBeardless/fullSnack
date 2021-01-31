@@ -21,6 +21,7 @@ const snackRouter = require("./routes/snackRoutes");
 
 // express.use middleware that interprets json files.
 app.use(express.json());
+// app.use(cors);
 
 // tell express that it needs to use the routers we have intialised
 app.use("/", internalRouter);

@@ -5,7 +5,6 @@ const DbSchema = mongoose.Schema;
 
 const snackSchema = new DbSchema({
   name: String,
-  cost: Number,
   rating: Number,
 });
 

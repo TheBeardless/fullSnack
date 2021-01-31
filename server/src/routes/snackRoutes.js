@@ -37,8 +37,7 @@ router.post("/new", (request, response) => {
   SnackModel.create(requestBody).then((data) => {
     console.log(data);
     console.log("Snack Created!");
-    response.send(`snack was added successfully.
-    ${data}`);
+    response.send(`snack was added successfully. ${data}`);
   });
 });
 
@@ -52,13 +51,18 @@ router.patch("/update/:id", (request, response) => {
   SnackModel.findByIdAndUpdate(idToUpdate, requestBody, {
     new: true,
     upsert: true,
-  }).then((data) => {
-    console.log(data);
-    console.log("Snack Updated!");
-    response.send(`snack updated successfully:
+  })
+    .then((data) => {
+      console.log(data);
+      console.log("Snack Updated!");
+      response.send(`snack updated successfully:
     ${data} 
     `);
-  });
+    })
+    .catch(() => {
+      console.log("Welp, that's not right!");
+      response.status(404).send("snack id was not found!!");
+    });
 });
 
 ////// DELETE ///////////////
@@ -67,14 +71,21 @@ router.delete("/delete/:id", (request, response) => {
   // extract request body for use
   const idToDelete = request.params.id;
   // then add request.body to the db collection.
-  SnackModel.findByIdAndDelete(idToDelete).then((data) => {
-    console.log(data);
-    console.log("Snack Deleted!");
-    response.send(`snack deleted successfully:
+  SnackModel.findByIdAndDelete(idToDelete)
+    .then((data) => {
+      console.log(data);
+      console.log("Snack Deleted!");
+      response.send(`snack deleted successfully:
     ${data} 
     `);
-  });
+    })
+    .catch(() => {
+      console.log("Welp, that's not right!");
+      response.status(404).send("snack id was not found!!");
+    });
 });
+
+// get list of rating
 
 // Export the router so it can be used by index.js
 module.exports = router;
