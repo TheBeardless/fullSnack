@@ -1,61 +1,71 @@
 const express = require("express");
-const SnacksAPI = require("../models/SnackModel");
+const SnackModel = require("../models/SnackModel");
 
 // // this will handle all internal routes
 const router = express.Router();
 
-/////// GET
+/////// GET //////////////d
+
+// set a default root route
 router.get("/", (request, response) => {
   response.send("Snack route for days");
 });
 
-// return something simple.
+// health check
 router.get("/_health", (request, response) => {
   response.send("Health route is working");
 });
 
-router.get("/snack", (request, response) => {
-  console.log("Snack route: ", request.body);
+// get all snacks
+router.get("/all", (request, response) => {
+  SnackModel.find()
+    .then((data) => {
+      response.send(data);
+    })
+    .catch(() => {
+      response.status(500).send("unable to query fruits");
+    });
 });
 
-/////// CREATE / POST
+/////// CREATE / POST /////////
+
 // add snack object to db collection
-router.post("/new-snack", (request, response) => {
+router.post("/new", (request, response) => {
   // extract request body for use
   const requestBody = request.body;
   // then add request.body to the db collection.
-  SnacksAPI.create(requestBody).then((data) => {
+  SnackModel.create(requestBody).then((data) => {
     console.log(data);
     console.log("Snack Created!");
+    response.send(`snack was added successfully. ID: ${data.id}`);
   });
-  response.send("this snack was added successfully");
 });
 
-/////// UPDATE
+/////// UPDATE //////////////
 //
 router.patch("/update/:id", (request, response) => {
   // extract request body for use
   const requestBody = request.body;
   const idToUpdate = request.params.id;
   // then add request.body to the db collection.
-  SnacksAPI.findByIdAndUpdate(idToUpdate, requestBody).then((data) => {
+  SnackModel.findByIdAndUpdate(idToUpdate, requestBody).then((data) => {
     console.log(data);
     console.log("Snack Updated!");
+    response.send(`snack was updated successfully. ID: ${data.id}`);
   });
-  response.send("this snack was updated successfully");
 });
 
-////// DELETE
+////// DELETE ///////////////
 // requires an ID
 router.delete("/delete/:id", (request, response) => {
   // extract request body for use
   const idToDelete = request.params.id;
   // then add request.body to the db collection.
-  SnacksAPI.findByIdAndDelete(idToDelete).then((data) => {
+  SnackModel.findByIdAndDelete(idToDelete).then((data) => {
     console.log(data);
     console.log("Snack Deleted!");
+    response.send(`snack was deleted successfully. ID: ${data.id}`);
   });
-  response.send("this snack was deleted successfully");
 });
 
 // Export the router so it can be used by index.js

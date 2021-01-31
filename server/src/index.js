@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require("express-session"); // for cookies
 
-// // connect mongoDB/mongoose here.
+// connect mongoDB/mongoose here.
 mongoose.connect("mongodb://localhost:27017/fullSnack", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
