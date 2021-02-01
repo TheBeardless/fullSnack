@@ -7,11 +7,11 @@ body {
   --color-success: #4bb544;
   --border-radius: 4px;
 
-  margin: 10px;
+  margin: 0px;
   height: 100vh;
   display: flex;
   /* flex-direction: column; */
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   justify-items: center;
   font-size: 18px;

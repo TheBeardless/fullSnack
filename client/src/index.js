@@ -10,5 +10,5 @@ import loginForm from "./js/user/loginForm";
 
 // build page
 $("body").prepend(snackForm());
-$("body").prepend(registerForm());
 $("body").prepend(loginForm());
+$("body").prepend(registerForm());
