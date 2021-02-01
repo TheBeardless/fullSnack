@@ -1,7 +1,14 @@
+// health check
+console.log(`index.js running`);
 // required for async functions
 import "regenerator-runtime/runtime";
 
-// updated app.js to index.js according to parcel docs.
-import snackForm from "./js/snackForm";
+// import forms
+import snackForm from "./js/snack/snackForm";
+import registerForm from "./js/user/registerForm";
+import loginForm from "./js/user/loginForm";
 
+// build page
 $("body").prepend(snackForm());
+$("body").prepend(registerForm());
+$("body").prepend(loginForm());

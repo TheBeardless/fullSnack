@@ -1,5 +1,3 @@
-import { $where } from "../../../server/src/models/SnackModel";
-
 const form = `
 <form id='form-snack'>
 <h1>Snack form</h1>
