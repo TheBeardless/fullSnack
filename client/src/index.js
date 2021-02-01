@@ -4,9 +4,11 @@ console.log(`index.js running`);
 import "regenerator-runtime/runtime";
 
 // import forms
-import snackForm from "./js/snackForm";
+import snackForm from "./js/snack/snackForm";
 import registerForm from "./js/user/registerForm";
+import loginForm from "./js/user/loginForm";
 
 // build page
-// $("body").prepend(snackForm());
+$("body").prepend(snackForm());
 $("body").prepend(registerForm());
+$("body").prepend(loginForm());

@@ -1,6 +1,6 @@
 const form = `
 <form id="new-user">
-  <h1>New user registration form</h1>
+  <h1>Registration form</h1>
   <div class="form-group">
     <label for="username">Username</label>
     <input type="text" name="username" placeholder="Please enter username" class="form-control">
