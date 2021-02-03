@@ -1,6 +1,9 @@
+import loginForm from "../user/loginForm";
+import Swal from "sweetalert2";
+
 const form = `
 <form id='form-snack'>
-<h1>Snack form</h1>
+<h1>Snack</h1>
   <div class="form-group">
   <div class="form-group">
   <label for="snackId">Snack Id (For update/delete)</label>
@@ -13,9 +16,10 @@ const form = `
     <label for="color">Snack Rating</label>
     <input type="text" class="form-control" id="rating" placeholder="Enter snack rating out of 10" name="rating">
   </div>
-  <button type="button" id="create-snack"  class="btn btn-primary">Create Snack</button>
-  <button  type="button" id="update-snack"  class="btn btn-warning">Update Snack</button>
-  <button  type="button" id="delete-snack"  class="btn btn-danger">Delete Snack</button>
+  <button type="button" id="create-snack"  class="btn btn-primary btn-lg btn-block">Create Snack</button>
+  <button  type="button" id="update-snack"  class="btn btn-warning btn-sm"">Update Snack</button>
+  <button  type="button" id="delete-snack"  class="btn btn-danger btn-sm"">Delete Snack</button>
+  <button  type="button" id="logout"  class="btn btn-outline-danger btn-sm"">Logout</button>
   </form>
 `;
 
@@ -41,9 +45,12 @@ const snackForm = () => {
       data: JSON.stringify(requestBody),
     });
     console.log("response", response);
-    window.alert("New snack created");
-
-    // TODO - install sweetAlert2
+    await Swal.fire(
+      `Snack Added!`,
+      `Snack: ${requestBody.name}, Rating: ${requestBody.rating}`,
+      "success"
+    );
+    // window.alert("New snack created");
   });
 
   ////////// UPDATE - Event Listener ////////////////
@@ -68,7 +75,12 @@ const snackForm = () => {
       data: JSON.stringify(requestBody),
     });
     console.log("response", response);
-    window.alert(`${requestBody.name} updated!`);
+    // window.alert(`${requestBody.name} updated!`);
+    await Swal.fire(
+      `Snack Updated!`,
+      `Snack: ${requestBody.name}, Rating: ${requestBody.rating}`,
+      "success"
+    );
   });
 
   ////////// DELETE - Event Listener ////////////////
@@ -76,29 +88,48 @@ const snackForm = () => {
 
   $(document).on("click", "#delete-snack", async (e) => {
     e.preventDefault();
-    console.log($("#name").val());
-    console.log($("#rating").val());
 
-    // extract form info
-    const requestBody = {
-      name: $("#name").val(),
-      rating: $("#rating").val(),
-    };
-    console.log("requestBody: ", requestBody);
+    await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log($("#name").val());
+        console.log($("#rating").val());
 
-    // PATCH request
-    const response = await $.ajax({
-      type: "DELETE",
-      url: `http://localhost:3000/snacks/delete/${$("#snackId").val()}`,
-      contentType: "application/json",
-      data: JSON.stringify(requestBody),
+        // extract form info
+        const requestBody = {
+          name: $("#name").val(),
+          rating: $("#rating").val(),
+        };
+        console.log("requestBody: ", requestBody);
+
+        // PATCH request
+        const response = $.ajax({
+          type: "DELETE",
+          url: `http://localhost:3000/snacks/delete/${$("#snackId").val()}`,
+          contentType: "application/json",
+          data: JSON.stringify(requestBody),
+        });
+        console.log("deleted response", response);
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
     });
-    console.log("response", response);
-    window.alert(`${requestBody.name} deleted!`);
   });
 
   // finally, return the form
   return form;
 };
+
+// Add logout form
+$(document).on("click", "#logout", () => {
+  $("body").empty();
+  $("body").append(loginForm());
+});
 
 export default snackForm;

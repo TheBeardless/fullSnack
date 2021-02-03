@@ -5,14 +5,14 @@ const SnackModel = require("../models/SnackModel");
 // // this will handle all internal routes
 const router = express.Router();
 
-router.use((request, response, next) => {
-  console.log("request:", request.session);
-  if (!request.session.user) {
-    response.status(404).send("please login");
-  } else {
-    next();
-  }
-});
+// router.use((request, response, next) => {
+//   console.log("request:", request.session);
+//   if (!request.session.user) {
+//     response.status(404).send("please login");
+//   } else {
+//     next();
+//   }
+// });
 
 /////// GET //////////////d
 
@@ -43,17 +43,14 @@ router.get("/all", (request, response) => {
 // add snack object to db collection
 router.post("/new", (request, response) => {
   // check if session is logged in
-  if (request.session.loggedIn === true) {
-    // extract request body for use
-    const requestBody = request.body;
-    // then add request.body to the db collection.
-    SnackModel.create(requestBody).then((data) => {
-      console.log(data, "Snack Created");
-      response.send(`snack was added successfully. ${data}`);
-    });
-  } else {
-    response.status(401).send("You're not logged in!");
-  }
+
+  // extract request body for use
+  const requestBody = request.body;
+  // then add request.body to the db collection.
+  SnackModel.create(requestBody).then((data) => {
+    console.log(data, "Snack Created");
+    response.send(`snack was added successfully. ${data}`);
+  });
 });
 
 /////// UPDATE //////////////

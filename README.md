@@ -1,3 +1,3 @@
 # FullSnackApp
 
-Enter your favourite snack and then vote on it.
+Vote on your favorite snack
