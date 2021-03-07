@@ -5,17 +5,6 @@ const SnackModel = require("../models/SnackModel");
 // // this will handle all internal routes
 const router = express.Router();
 
-// router.use((request, response, next) => {
-//   console.log("request:", request.session);
-//   if (!request.session.user) {
-//     response.status(404).send("please login");
-//   } else {
-//     next();
-//   }
-// });
-
-/////// GET //////////////d
-
 // set a default root route
 router.get("/", (request, response) => {
   response.send("Snack route for days");
