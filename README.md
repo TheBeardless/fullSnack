@@ -1,14 +1,16 @@
 # FullSnackApp
 
+---
+
 Rate your favorite snack.
 
 ### Technical Requirements
 
 ---
 
-:heavy_check_mark: Have at least 2 related models. <br>
-:heavy_check_mark: Include sign up/log in functionality with encrypted passwords & an authorization flow. <br>
-:heavy_check_mark: Have semantically clean HTML and CSS <br>
+:heavy_check_mark: \*\*Have at \_least\* 2 related models**
+:heavy_check_mark: **Include sign up/log in functionality** with encrypted passwords & an authorization flow.
+:heavy_check_mark: Have **semantically clean HTML and CSS\*\*
 
 ### The Stack
 
